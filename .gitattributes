@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+Project/Library/PackageCache/com.unity.burst@1.7.3/.Runtime/hostmac/lld filter=lfs diff=lfs merge=lfs -text
+Final filter=lfs diff=lfs merge=lfs -text
+Project/Library/PackageCache/com.unity.burst@1.7.3/.Runtime/libburst-llvm-12.dylib filter=lfs diff=lfs merge=lfs -text
