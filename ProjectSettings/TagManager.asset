@@ -3,17 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Movable Objects
+  - triggers
+  - keys
+  - triggersUp
+  - triggerSet
+  - NonEnvironment Lighting
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Obstacles
+  - Interactable
+  - FPVInvisible
   - 
   - 
   - 
