@@ -5,6 +5,8 @@ using TMPro;
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using UnityEditor;
+using UnityEngine.ProBuilder;
 
 public class TimeController : MonoBehaviour
 {
@@ -57,17 +59,20 @@ public class TimeController : MonoBehaviour
     void Start()
     {
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
-        sunriseTime = TimeSpan.FromHours(sunriseHour);
-        sunsetTime = TimeSpan.FromHours(sunsetHour);
-     
+
+
+        //sunriseTime = TimeSpan.FromHours(sunriseHour);
+        //sunsetTime = TimeSpan.FromHours(sunsetHour);
+
     }
 
     private void FixedUpdate()
     {
         updateTimeofDay();
-        rotateSun();
-        updateLightSetting();
-        //Debug.Log(Time.deltaTime * timeMultiplier)
+
+        //rotateSun();
+        //updateLightSetting();
+
     }
 
 
@@ -127,4 +132,7 @@ public class TimeController : MonoBehaviour
         }
         return diff;
     }
+
 }
+
+
