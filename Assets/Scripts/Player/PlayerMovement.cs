@@ -9,9 +9,9 @@ using UnityEngine.XR;
 public class PlayerMovement : MonoBehaviour
 {
     //grab global data
-    public GameObject gobal;
-    private Initialization gobal_init;
-    private Setting gobal_setting;
+    public GameObject global;
+    private Initialization global_init;
+    private Setting global_setting;
     
     //int tempCount = 0;
     //speed of movement
@@ -66,10 +66,10 @@ public class PlayerMovement : MonoBehaviour
         firstPersonEnabled = true;
         thirdPersonEnabled = false;
         enableControl = true;
-        gobal_init = gobal.GetComponent<Initialization>();
-        gobal_setting = gobal.GetComponent<Setting>();
-        thirdPerson_Camera = GameObject.Find("Camera ThirdPerson");
-        cam = thirdPerson_Camera.transform;
+        global_init = global.GetComponent<Initialization>();
+        global_setting = global.GetComponent<Setting>();
+        //thirdPerson_Camera = GameObject.Find("Camera ThirdPerson");
+        //cam = thirdPerson_Camera.transform;
 
         
     }
@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
     //    //teleport to location
     //    gameObject.transform.position = teleportPos;
     //    //regenerate the room objects
-    //    gobal_setting.regeneratePos = true;
+    //    global_setting.regeneratePos = true;
     //    yield return new WaitForSeconds(0.1f);
     //    enableControl = true;
 
