@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         //thirdPerson_Camera = GameObject.Find("Camera ThirdPerson");
         //cam = thirdPerson_Camera.transform;
 
-        
     }
 
 
@@ -102,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
             jumpFeature();
             /*                             end                               */
             //=================================================================
-
 
             //player control in first person camera
             if (firstPersonEnabled)
@@ -137,18 +135,6 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        //create an invisiable sphere use to check if it's colliding with certain layer
-        isGrounded = Physics.CheckSphere(groundCheck.position, collidingDistance, groundMask);
-
-
-        //reset y velocity when it's on ground
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -4f;
-            
-        }
-
-
         Collider[] hitColliders = Physics.OverlapSphere(groundCheck.position, collidingDistance);
         foreach (var hitCollider in hitColliders)
         {
@@ -164,21 +150,41 @@ public class PlayerMovement : MonoBehaviour
 
     void jumpFeature()
     {
+
+        //create an invisiable sphere use to check if it's colliding with certain layer
+        isGrounded = Physics.CheckSphere(groundCheck.position, collidingDistance, groundMask);
+
+
+        //reset y velocity when it's on ground
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -100f;
+        }
+
         //jump features
         //applies to both first person and third person camera
-        if (Input.GetButtonDown("Jump") && isGrounded )
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            
+
             //v = sqrt (h * -2 * g)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-          
+        }
 
+
+
+
+        if (isGrounded == false)
+        {
+            //apply gravity
+            velocity.y += gravity * Time.deltaTime;
 
         }
-        //apply gravity
-        velocity.y += gravity * Time.deltaTime;
         //x = vt
-        controller.Move(velocity * Time.deltaTime);
+        if(velocity.y != -100f)
+        {
+            controller.Move(velocity * Time.deltaTime);
+        }
+
     }
 
     void firstpersonControll()
