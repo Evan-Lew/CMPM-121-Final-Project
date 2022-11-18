@@ -3,21 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform interactionPoint;
-    [SerializeField] private float interactionPointRadius = 0.5f;
+
     [SerializeField] private LayerMask interactableMask;
     [SerializeField] private InteractionPromptUI _interactionPromptUI;
 
     private readonly Collider[] colliders = new Collider[3];
     [SerializeField] private int numFound;
 
+
     private IInteractable interactable;
-    
+
+    [Header("Radius of Interaction Sphere")]
+    [Tooltip("This will change the sphere in front of the player for interaction check")]
+    [SerializeField] private float interactionPointRadius = 0.5f;
+
+    [Header("Setup Interaction Button")]
+    [Tooltip("This button will be used for interation. Once hit the button, the interation function in object will be run")]
+    public KeyCode interactionKey;
+
     void Start()
     {
-        
     }
 
     public void Update()
@@ -36,8 +45,8 @@ public class Interactor : MonoBehaviour
             {
                
                 if (!_interactionPromptUI.IsDisplayed) _interactionPromptUI.SetUp(interactable.InteractionPrompt);
-                if (Input.GetKeyDown(KeyCode.Q)) interactable.Interact(interactor: this);
-                if (Input.GetKeyDown(KeyCode.E)) _interactionPromptUI.NoteSetUp(interactable.paragraphText);
+                if (Input.GetKeyDown(interactionKey)) interactable.Interact(interactor: this);
+             //   if (Input.GetKeyDown(KeyCode.E)) _interactionPromptUI.NoteSetUp(interactable.paragraphText);
             }
             
         }
