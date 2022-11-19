@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lookControl : MonoBehaviour
+public class ViewingControl : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform playerBody;
@@ -23,17 +23,8 @@ public class lookControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //change cursor visibility
-        if(enableCursor == false)
-        {
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.visible = true;
-        }
 
-
+        Cursor.visible = enableCursor;
 
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

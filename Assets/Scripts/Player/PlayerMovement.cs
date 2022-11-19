@@ -1,19 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
 using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //grab global data
-    public GameObject global;
-    private Initialization global_init;
-    private Setting global_setting;
+    public static PlayerMovement instance;
     
-    //int tempCount = 0;
     //speed of movement
     public float speed;
     //current controller
@@ -28,21 +26,21 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    //varibel used to control switcher
+    //variable used to control switcher
     [HideInInspector] public bool firstPersonEnabled;
     [HideInInspector] public bool thirdPersonEnabled;
 
-    //control if player controller is enable or not
+    //control if player controller is enabled or not
     bool enableControl;
 
-    float horizontal;
-    float vertical;
+    float xMoveVector;
+    float zMoveVector;
 
-    float Angle;
+    float angle;
     float smoothAngle;
     float turnSmooth_time = 0.1f;
     float turnSmooth_velocity;
-    float gravity = -18f;
+    const float gravity = -18f;
     Vector3 direction;
     Vector3 actual_moveDirection;
     Vector3 velocity;
@@ -51,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
     public float collidingDistance = 0.4f;
 
     //third person camera that you want the player to follow
-    GameObject thirdPerson_Camera;
-    Transform cam;
+    GameObject thirdPersonCamera;
+    Transform thirdPersonCameraTransform;
 
 
-
-     
-
-
+    private void Awake()
+    {
+        instance = this;
+    }
 
 
     private void Start()
@@ -66,11 +64,6 @@ public class PlayerMovement : MonoBehaviour
         firstPersonEnabled = true;
         thirdPersonEnabled = false;
         enableControl = true;
-        global_init = global.GetComponent<Initialization>();
-        global_setting = global.GetComponent<Setting>();
-        //thirdPerson_Camera = GameObject.Find("Camera ThirdPerson");
-        //cam = thirdPerson_Camera.transform;
-
     }
 
 
@@ -83,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
             //=================================================================
             /*                      player movement setup                    */
-            playerMovementSetup();
+            PlayerMovementSetup();
             /*                             end                               */
             //=================================================================
 
@@ -98,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //=================================================================
             /*                           Jumping                             */
-            jumpFeature();
+            JumpFeature();
             /*                             end                               */
             //=================================================================
 
@@ -109,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
                 //=================================================================
                 /*                       movement control                        */
-                firstpersonControll();
+                FirstPersonControl();
                 /*                             end                               */
                 //=================================================================
             }
@@ -119,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //=================================================================
                 /*                       movement control                        */
-                thirdpersonControll();
+                ThirdPersonControl();
                 /*                             end                               */
                 //=================================================================
             }
@@ -129,11 +122,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void playerMovementSetup()
+    void PlayerMovementSetup()
     {
         //get key wasd and arrow key
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        xMoveVector = Input.GetAxisRaw("Horizontal");
+        zMoveVector = Input.GetAxisRaw("Vertical");
 
         Collider[] hitColliders = Physics.OverlapSphere(groundCheck.position, collidingDistance);
         foreach (var hitCollider in hitColliders)
@@ -142,13 +135,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator waitThreeSecond()
-    {
-        yield return new WaitForSeconds(1);
+    // IEnumerator waitThreeSecond()
+    // {
+    //     yield return new WaitForSeconds(1);
+    //
+    // }
 
-    }
-
-    void jumpFeature()
+    void JumpFeature()
     {
 
         //create an invisiable sphere use to check if it's colliding with certain layer
@@ -169,11 +162,9 @@ public class PlayerMovement : MonoBehaviour
             //v = sqrt (h * -2 * g)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        
 
-
-
-
-        if (isGrounded == false)
+        if (!isGrounded)
         {
             //apply gravity
             velocity.y += gravity * Time.deltaTime;
@@ -187,29 +178,29 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void firstpersonControll()
+    void FirstPersonControl()
     {
-        direction = transform.right * horizontal + transform.forward * vertical;
+        direction = transform.right * xMoveVector + transform.forward * zMoveVector;
         controller.Move(direction.normalized * speed * Time.deltaTime);
     }
 
-    void thirdpersonControll()
+    void ThirdPersonControl()
     {
 
         //find moving angle in vector
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
+        direction = new Vector3(xMoveVector, 0f, zMoveVector).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
 
             //convert vector3 into angle + add camera angle, so the player will go toward
-            Angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + thirdPersonCameraTransform.eulerAngles.y;
             //get smooth angle for turning
-            smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, Angle, ref turnSmooth_velocity, turnSmooth_time);
+            smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, angle, ref turnSmooth_velocity, turnSmooth_time);
             //make player rotate
             transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
             //make finding moving direction of camera
-            actual_moveDirection = Quaternion.Euler(0f, Angle, 0f) * Vector3.forward;
+            actual_moveDirection = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
             //make player move
             controller.Move(actual_moveDirection.normalized * speed * Time.deltaTime);
 

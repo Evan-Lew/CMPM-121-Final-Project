@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Book : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string prompt;
-    public string InteractionPrompt => prompt;
-
-    [SerializeField] private string text;
-    public string paragraphText => text;
-
-    public bool Interact(Interactor interactor)
+    public void Interact()
     {
         Debug.Log(message: "Opening Book!");
-        return true;
     }
 }

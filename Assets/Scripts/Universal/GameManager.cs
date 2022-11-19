@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Initialization : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
 
     [HideInInspector]
     public class keyObjects
@@ -13,11 +14,13 @@ public class Initialization : MonoBehaviour
         public bool isInteracted; 
     }
 
-    [HideInInspector] public  List<keyObjects> keyList = new List<keyObjects>();
-    [HideInInspector] public keyObjects tempKey;
+    public  List<keyObjects> keyList = new List<keyObjects>();
+    public keyObjects tempKey;
 
     private void Awake()
     {
+        instance = this;
+        
         tempKey = new keyObjects();
         tempKey.name = "Notepad";
         tempKey.isInteracted = false;

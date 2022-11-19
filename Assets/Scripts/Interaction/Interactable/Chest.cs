@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string prompt;
-    public string InteractionPrompt => prompt;
+    // [SerializeField] private string prompt;
+    // public string InteractionPrompt => prompt;
+    //
+    // [SerializeField] private string text;
+    // public string paragraphText => text;
 
-    [SerializeField] private string text;
-    public string paragraphText => text;
-
-    public bool Interact(Interactor interactor)
+    public void Interact()
     {
         //write your function here 
         Debug.Log(message: "Interact with chest!");
-
-        //
-        return true;
     }
 }
