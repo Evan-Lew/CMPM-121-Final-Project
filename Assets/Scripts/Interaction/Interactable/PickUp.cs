@@ -4,24 +4,28 @@ public enum PitObjectType
 {
     Consumed, Return, 
 }
-public class PickUp : MonoBehaviour, IInteractable
+public class PickUp : Interactable 
 {
     private bool pickedUp;
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
+    private MeshCollider _meshCollider;
 
     public PitObjectType objectType;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _meshCollider = GetComponent<MeshCollider>();
     }
 
-    public void Interact()
+    public override void Interact()
     {
         if (!pickedUp)
         {
             pickedUp = true;
             transform.SetParent(PlayerMovement.instance.transform);
+            _meshCollider.enabled = false;
+            _rigidbody.useGravity = false;
             Interactor.instance.currentPickedObject = gameObject;
             //originalRelativePosition = transform.position;
         }
@@ -31,6 +35,8 @@ public class PickUp : MonoBehaviour, IInteractable
     {
         pickedUp = false;
         transform.SetParent(null); 
+        _meshCollider.enabled = true;
+        _rigidbody.useGravity = true;
     }
 
     private void Update()
@@ -51,7 +57,7 @@ public class PickUp : MonoBehaviour, IInteractable
                 case PitObjectType.Consumed:
                     break;
                 case PitObjectType.Return:
-                    rigidbody.velocity = Vector3.up * 20f;
+                    _rigidbody.velocity = Vector3.up * 20f;
                     break;
             }
         }

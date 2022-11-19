@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour, IInteractable
+public class Chest : Interactable
 {
     // [SerializeField] private string prompt;
     // public string InteractionPrompt => prompt;
@@ -10,7 +10,7 @@ public class Chest : MonoBehaviour, IInteractable
     // [SerializeField] private string text;
     // public string paragraphText => text;
 
-    public void Interact()
+    public override void Interact()
     {
         //write your function here 
         Debug.Log(message: "Interact with chest!");

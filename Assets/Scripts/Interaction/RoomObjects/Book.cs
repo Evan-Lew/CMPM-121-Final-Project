@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Book : MonoBehaviour, IInteractable
+public class Book : Interactable
 {
-    public void Interact()
+    public override void Interact()
     {
         Debug.Log(message: "Opening Book!");
     }

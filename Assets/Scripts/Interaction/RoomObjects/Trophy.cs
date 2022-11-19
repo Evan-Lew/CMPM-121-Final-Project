@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trophy : MonoBehaviour, IInteractable
+public class Trophy : Interactable
 {
     private GameObject global;
     private GameManager global_init;
@@ -15,7 +15,7 @@ public class Trophy : MonoBehaviour, IInteractable
 
 
 
-    public void Interact()
+    public override void Interact()
     {
         global_init.keyList.Find(x => x.name == "Trophy").isInteracted = true;
   

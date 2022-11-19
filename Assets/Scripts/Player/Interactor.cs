@@ -17,8 +17,6 @@ public class Interactor : MonoBehaviour
 
     public GameObject currentPickedObject;
 
-    private IInteractable interactable;
-
     [Header("Radius of Interaction Sphere")]
     [Tooltip("This will change the sphere in front of the player for interaction check")]
     [SerializeField] private float interactionPointRadius = 0.5f;
@@ -40,6 +38,7 @@ public class Interactor : MonoBehaviour
             if (currentPickedObject != null)
             {
                 currentPickedObject.GetComponent<PickUp>().Drop();
+                currentPickedObject = null;
                 return;
             }
 
@@ -48,18 +47,14 @@ public class Interactor : MonoBehaviour
 
             if (numFound > 0)
             {
-                interactable = colliders[0].GetComponent<IInteractable>();
+                Interactable interactable = colliders[0].GetComponent<Interactable>();
                 if (interactable != null)
                 {
                     //if (!_interactionPromptUI.IsDisplayed) _interactionPromptUI.SetUp(interactable.InteractionPrompt);
                     interactable.Interact();
                 }
             }
-            // else
-            // {
-            //     interactable = null;
-            //     //if (_interactionPromptUI.IsDisplayed) _interactionPromptUI.Close();
-            // }
+
         }
     }
 
