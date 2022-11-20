@@ -10,6 +10,7 @@ TagManager:
   - triggersUp
   - triggerSet
   - NonEnvironment Lighting
+  - Pit
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Obstacles
   - Interactable
   - FPVInvisible
-  - 
-  - 
+  - PlayerBoundary
+  - Player
   - 
   - 
   - 
