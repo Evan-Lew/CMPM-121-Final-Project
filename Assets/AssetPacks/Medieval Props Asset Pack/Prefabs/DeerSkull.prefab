@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4150207490631304}
   - component: {fileID: 205000329934372142}
+  - component: {fileID: 9162641697461610167}
   m_Layer: 0
   m_Name: DeerSkull
   m_TagString: Untagged
@@ -67,6 +68,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23100445705686146}
   m_Enabled: 0
+--- !u!64 &9162641697461610167
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297846027387968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1342626750332372
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +93,7 @@ GameObject:
   - component: {fileID: 4485839231754978}
   - component: {fileID: 33709905161710794}
   - component: {fileID: 23745215531919000}
+  - component: {fileID: 4092418581685600988}
   m_Layer: 0
   m_Name: DeerSkull_LOD2
   m_TagString: Untagged
@@ -151,6 +167,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4092418581685600988
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342626750332372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 5075c0210561c499fa69be510578de4a, type: 3}
 --- !u!1 &1452707341226912
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +192,7 @@ GameObject:
   - component: {fileID: 4610632885779264}
   - component: {fileID: 33488141249490198}
   - component: {fileID: 23799432685468296}
+  - component: {fileID: 6649092639415873979}
   m_Layer: 0
   m_Name: DeerSkull_LOD0
   m_TagString: Untagged
@@ -235,6 +266,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6649092639415873979
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452707341226912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 5075c0210561c499fa69be510578de4a, type: 3}
 --- !u!1 &1749543095558524
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +291,7 @@ GameObject:
   - component: {fileID: 4373777804752276}
   - component: {fileID: 33978388093651828}
   - component: {fileID: 23100445705686146}
+  - component: {fileID: 5038342284857542947}
   m_Layer: 0
   m_Name: DeerSkull_LOD3
   m_TagString: Untagged
@@ -319,6 +365,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5038342284857542947
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749543095558524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5075c0210561c499fa69be510578de4a, type: 3}
 --- !u!1 &1830445303761648
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +390,7 @@ GameObject:
   - component: {fileID: 4314221804569810}
   - component: {fileID: 33175500055399120}
   - component: {fileID: 23705335933881454}
+  - component: {fileID: 7285927364767795874}
   m_Layer: 0
   m_Name: DeerSkull_LOD1
   m_TagString: Untagged
@@ -403,3 +464,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7285927364767795874
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830445303761648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 5075c0210561c499fa69be510578de4a, type: 3}
