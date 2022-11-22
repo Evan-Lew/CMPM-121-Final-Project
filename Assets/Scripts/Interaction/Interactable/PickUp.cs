@@ -43,7 +43,7 @@ public class PickUp : Interactable
     {
         if (pickedUp)
         {
-            //transform.localPosition = originalRelativePosition;
+            transform.localPosition = ViewingControl.instance.playerLookVector * 5f;
         }
     }
 
