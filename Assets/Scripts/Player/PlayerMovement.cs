@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool thirdPersonEnabled;
 
     //control if player controller is enabled or not
-    bool enableControl;
+    [HideInInspector]public bool enableControl;
 
     float xMoveVector;
     float zMoveVector;
@@ -49,7 +49,11 @@ public class PlayerMovement : MonoBehaviour
     public float collidingDistance = 0.4f;
 
     public LayerMask pitBottomMask;
+    [HideInInspector] public Vector3 startPos;
     bool isPitted;
+    public bool enablePitFallFeature;
+    public GameObject FadeOut;
+    FadeOut FadeOut_Script;
 
     //third person camera that you want the player to follow
     GameObject thirdPersonCamera;
@@ -67,12 +71,15 @@ public class PlayerMovement : MonoBehaviour
         firstPersonEnabled = true;
         thirdPersonEnabled = false;
         enableControl = true;
+        enablePitFallFeature = true;
+        startPos = transform.position;
+        FadeOut_Script = FadeOut.GetComponent<FadeOut>();
+         
     }
 
 
     private void FixedUpdate()
     {
-
         //physic related
         if (enableControl)
         {
@@ -86,9 +93,12 @@ public class PlayerMovement : MonoBehaviour
 
 
             isPitted = Physics.CheckSphere(groundCheck.position, collidingDistance, pitBottomMask);
-            if (isPitted)
+            if (isPitted && enablePitFallFeature)
             {
-                Debug.Log("Yes");
+                enablePitFallFeature = false;
+                FadeOut.SetActive(true);
+                FadeOut_Script.FadingEvent();
+    
             }
 
         }
