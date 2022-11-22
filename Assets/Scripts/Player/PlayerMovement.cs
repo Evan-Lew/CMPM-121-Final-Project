@@ -11,7 +11,7 @@ using UnityEngine.XR;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
-    
+
     //speed of movement
     public float speed;
     //current controller
@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     public float collidingDistance = 0.4f;
 
+    public LayerMask pitBottomMask;
+    bool isPitted;
+
     //third person camera that you want the player to follow
     GameObject thirdPersonCamera;
     Transform thirdPersonCameraTransform;
@@ -80,10 +83,18 @@ public class PlayerMovement : MonoBehaviour
             /*                             end                               */
             //=================================================================
 
+
+
+            isPitted = Physics.CheckSphere(groundCheck.position, collidingDistance, pitBottomMask);
+            if (isPitted)
+            {
+                Debug.Log("Yes");
+            }
+
         }
     }
 
-    
+
 
     private void Update()
     {
@@ -117,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
                 //=================================================================
             }
 
-
         }
 
     }
@@ -134,12 +144,6 @@ public class PlayerMovement : MonoBehaviour
             //check collison
         }
     }
-
-    // IEnumerator waitThreeSecond()
-    // {
-    //     yield return new WaitForSeconds(1);
-    //
-    // }
 
     void JumpFeature()
     {
@@ -162,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
             //v = sqrt (h * -2 * g)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        
+
 
         if (!isGrounded)
         {
@@ -171,11 +175,10 @@ public class PlayerMovement : MonoBehaviour
 
         }
         //x = vt
-        if(velocity.y != -100f)
+        if (velocity.y != -100f)
         {
             controller.Move(velocity * Time.deltaTime);
         }
-
     }
 
     void FirstPersonControl()

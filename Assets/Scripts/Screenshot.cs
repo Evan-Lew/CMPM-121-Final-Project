@@ -5,10 +5,10 @@ using UnityEngine;
 public class Screenshot : MonoBehaviour
 {
     public SnapshotCamera snapCam;
-
+    public KeyCode snapShotKey;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(snapShotKey))
         {
             snapCam.CallTakeSnapshot();
         }

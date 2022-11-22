@@ -12,6 +12,9 @@ public class RockExit : MonoBehaviour
     private const float explodeForce = 10f;
     private const float rockFadeDelay = 3f;
 
+
+    public KeyCode explodeKey = KeyCode.K;
+
     private void Awake()
     {
         instance = this;
@@ -55,7 +58,7 @@ public class RockExit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(explodeKey))
         {
             Explode();
         }
