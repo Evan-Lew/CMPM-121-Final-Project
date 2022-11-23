@@ -57,7 +57,10 @@ public class PickUp : Interactable
                 case PitObjectType.Consumed:
                     break;
                 case PitObjectType.Return:
-                    _rigidbody.velocity = Vector3.up * 20f;
+                    float horizontalElement = .33f;
+                    Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized * horizontalElement;
+                    //print(new Vector3(randomElement.x, 1, randomElement.y).normalized * 17f);
+                    _rigidbody.velocity = new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f;
                     break;
             }
         }
