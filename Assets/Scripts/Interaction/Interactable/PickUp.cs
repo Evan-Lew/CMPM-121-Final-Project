@@ -43,7 +43,7 @@ public class PickUp : Interactable
     {
         if (pickedUp)
         {
-            transform.localPosition = ViewingControl.instance.playerLookVector * 5f;
+            transform.position = ViewingControl.instance.playerLookVector;
         }
     }
 
@@ -59,8 +59,8 @@ public class PickUp : Interactable
                 case PitObjectType.Return:
                     float horizontalElement = .33f;
                     Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized * horizontalElement;
-                    //print(new Vector3(randomElement.x, 1, randomElement.y).normalized * 17f);
                     _rigidbody.velocity = new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f;
+                    print(new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f);
                     break;
             }
         }

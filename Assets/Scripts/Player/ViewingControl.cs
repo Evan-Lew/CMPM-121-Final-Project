@@ -26,7 +26,7 @@ public class ViewingControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lookVectorObject = transform.Find("LookVec");
+        lookVectorObject = transform.Find("LookVector");
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
