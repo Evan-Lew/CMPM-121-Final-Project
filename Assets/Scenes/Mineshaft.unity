@@ -50435,7 +50435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532868390}
   m_Layer: 0
-  m_Name: '*Key Objects'
+  m_Name: '*Clue Objects'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96717,7 +96717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023574543}
   m_Layer: 0
-  m_Name: '*NonKey Objects'
+  m_Name: '*NonClue Objects'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
