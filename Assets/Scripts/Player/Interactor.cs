@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -19,7 +20,7 @@ public class Interactor : MonoBehaviour
 
     [Header("Radius of Interaction Sphere")]
     [Tooltip("This will change the sphere in front of the player for interaction check")]
-    [SerializeField] private float interactionPointRadius = 0.5f;
+    [SerializeField] private float interactionPointRadius = 0.3f;
 
     [Header("Setup Interaction Button")]
     [Tooltip("This button will be used for interaction. Once hit the button, the interaction function in object will be run")]
@@ -33,6 +34,16 @@ public class Interactor : MonoBehaviour
 
     public void Update()
     {
+        numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders,
+            interactableMask);
+        if (numFound > 0)
+        {
+            UIManager.instance.transform.Find("PickUpText").GetComponent<TMP_Text>().enabled = true;
+        }
+        else
+        {
+            UIManager.instance.transform.Find("PickUpText").GetComponent<TMP_Text>().enabled = false;
+        }
         if (Input.GetKeyDown(interactionKey))
         {
             if (currentPickedObject != null)
@@ -53,6 +64,10 @@ public class Interactor : MonoBehaviour
                     //if (!_interactionPromptUI.IsDisplayed) _interactionPromptUI.SetUp(interactable.InteractionPrompt);
                     interactable.Interact();
                 }
+            }
+            else
+            {
+                
             }
 
         }

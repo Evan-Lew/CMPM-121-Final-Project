@@ -9,7 +9,7 @@ public class PickUp : Interactable
 {
     private bool pickedUp;
     private Rigidbody _rigidbody;
-    private MeshCollider _meshCollider;
+    private Collider _collider;
 
     //refer to list build script
     InteractiveObjectManager _script_interactiveObjectManager;
@@ -24,7 +24,7 @@ public class PickUp : Interactable
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _meshCollider = GetComponent<MeshCollider>();
+        _collider = GetComponent<Collider>();
     }
 
     public override void Interact()
@@ -33,7 +33,7 @@ public class PickUp : Interactable
         {
             pickedUp = true;
             //transform.SetParent(PlayerMovement.instance.transform);
-            _meshCollider.enabled = false;
+            //_collider.enabled = false;
             _rigidbody.useGravity = false;
             Interactor.instance.currentPickedObject = gameObject;
             //originalRelativePosition = transform.position;
@@ -44,15 +44,17 @@ public class PickUp : Interactable
     {
         pickedUp = false;
         // transform.SetParent(null); 
-        _meshCollider.enabled = true;
+        //_collider.enabled = true;
         _rigidbody.useGravity = true;
+        _rigidbody.velocity = Vector3.zero;
     }
 
     private void Update()
     {
         if (pickedUp)
         {
-            transform.position = ViewingControl.instance.playerLookVector;
+            Vector3 moveDir = (ViewingControl.instance.playerLookVector - transform.position);
+            _rigidbody.velocity = moveDir * 5;
         }
     }
 
@@ -64,7 +66,7 @@ public class PickUp : Interactable
             switch (objectType)
             {
                 case PitObjectType.Consumed:
-                    this.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
                     _script_interactiveObjectManager.List_Build();
                     break;
                 case PitObjectType.Return:
