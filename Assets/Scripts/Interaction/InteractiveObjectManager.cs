@@ -14,7 +14,7 @@ public class InteractiveObjectManager : MonoBehaviour
     [SerializeField] private GameObject nonClueObjectsParent;
 
 
-    public StatusControl script_StatusControl;
+    [HideInInspector]public StatusControl script_StatusControl;
 
     public List<GameObject> List_Clues;
     public List<GameObject> List_CluesInPit;
