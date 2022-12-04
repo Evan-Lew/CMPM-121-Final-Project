@@ -1,12 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
-using UnityEngine.Video;
-using UnityEngine.XR;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -74,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         enablePitFallFeature = true;
         startPos = transform.position;
         FadeOut_Script = FadeOut.GetComponent<FadeOut>();
-         
+
     }
 
 
@@ -89,25 +84,17 @@ public class PlayerMovement : MonoBehaviour
             PlayerMovementSetup();
             /*                             end                               */
             //=================================================================
+            playerPosValidationCheck();
 
 
-
-            isPitted = Physics.CheckSphere(groundCheck.position, collidingDistance, pitBottomMask);
-            if (isPitted && enablePitFallFeature)
-            {
-                enablePitFallFeature = false;
-                FadeOut.SetActive(true);
-                FadeOut_Script.FadingEvent();
-    
-            }
 
         }
     }
 
-
-
     private void Update()
     {
+
+
         if (enableControl)
         {
             //=================================================================
@@ -124,6 +111,9 @@ public class PlayerMovement : MonoBehaviour
                 //=================================================================
                 /*                       movement control                        */
                 FirstPersonControl();
+
+                playMovementSound();
+
                 /*                             end                               */
                 //=================================================================
             }
@@ -139,14 +129,52 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-
     }
+
+    void playMovementSound()
+    {
+ 
+        if (!SoundManager.audioSrc_footStep.isPlaying)
+        {
+            if (isGrounded && controller.velocity.magnitude != 0)
+            {
+                SoundManager.PlaySound("sfx_Footstep", 1);
+            }
+
+        }
+
+        //during the playtime if player stop, the sound end 
+        if (SoundManager.audioSrc_footStep.isPlaying)
+        {
+
+            if (!isGrounded || controller.velocity.magnitude == 0)
+            {
+
+                SoundManager.audioSrc_footStep.Pause();
+            }
+        }
+    }
+
+void playerPosValidationCheck()
+    {
+        isPitted = Physics.CheckSphere(groundCheck.position, collidingDistance, pitBottomMask);
+        if (isPitted && enablePitFallFeature)
+        {
+            enablePitFallFeature = false;
+            FadeOut.SetActive(true);
+            FadeOut_Script.FadingEvent();
+        }
+    }
+
+
 
     void PlayerMovementSetup()
     {
         //get key wasd and arrow key
         xMoveVector = Input.GetAxisRaw("Horizontal");
         zMoveVector = Input.GetAxisRaw("Vertical");
+
+
 
         Collider[] hitColliders = Physics.OverlapSphere(groundCheck.position, collidingDistance);
         foreach (var hitCollider in hitColliders)
@@ -175,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
             //v = sqrt (h * -2 * g)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            SoundManager.PlaySound("sfx_Jump", 2);
         }
 
 
@@ -193,6 +222,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FirstPersonControl()
     {
+
+
+
         direction = transform.right * xMoveVector + transform.forward * zMoveVector;
         controller.Move(direction.normalized * speed * Time.deltaTime);
     }

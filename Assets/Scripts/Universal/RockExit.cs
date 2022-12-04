@@ -38,6 +38,7 @@ public class RockExit : MonoBehaviour
 
     public void Explode()
     {
+        SoundManager.PlaySound("sfx_Explosion", 0.3f);
         StartCoroutine(ExplosionCoroutine());
     }
 
