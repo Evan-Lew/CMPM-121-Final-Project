@@ -27,6 +27,7 @@ public class DesignerSetting : EditorWindow
     private RockExit RockExit_script_RockExit;
 
     [SerializeField] bool enableCursor;
+    [SerializeField] float mouseSensitivity;
     private GameObject CamFirstPerson;
     private ViewingControl CamFirstPerson_script_Viewcontrol;
 
@@ -62,6 +63,7 @@ public class DesignerSetting : EditorWindow
         {
             speed = EditorGUILayout.FloatField("Speed", Player_script_movement.speed);
             enableCursor = EditorGUILayout.Toggle("Enable Cursor", CamFirstPerson_script_Viewcontrol.enableCursor);
+            mouseSensitivity = EditorGUILayout.Slider("Mouse Sensitivity", CamFirstPerson_script_Viewcontrol.mouseSensitivity, 0, 2000);
             interactionKey = (KeyCode)EditorGUILayout.EnumPopup("Interaction Key", Player_script_interactor.interactionKey);
             snapShotKey = (KeyCode)EditorGUILayout.EnumPopup("Snap Shot Key", Player_script_Screenshot.snapShotKey);
             explodeKey = (KeyCode)EditorGUILayout.EnumPopup("Explosion Key", RockExit_script_RockExit.explodeKey);
@@ -73,6 +75,7 @@ public class DesignerSetting : EditorWindow
 
             speed = EditorGUILayout.FloatField("Speed", speed);
             enableCursor = EditorGUILayout.Toggle("Enable Cursor", enableCursor);
+            mouseSensitivity = EditorGUILayout.Slider("Mouse Sensitivity", mouseSensitivity, 0, 2000);
             interactionKey = (KeyCode)EditorGUILayout.EnumPopup("Interaction Key", interactionKey);
             snapShotKey = (KeyCode)EditorGUILayout.EnumPopup("Snap Shot Key", snapShotKey);
             explodeKey = (KeyCode)EditorGUILayout.EnumPopup("Explosion Key", explodeKey);
@@ -83,6 +86,7 @@ public class DesignerSetting : EditorWindow
         {
             Player_script_movement.speed = speed;
             CamFirstPerson_script_Viewcontrol.enableCursor = enableCursor;
+            CamFirstPerson_script_Viewcontrol.mouseSensitivity = mouseSensitivity;
             Player_script_interactor.interactionKey = interactionKey;
             Player_script_Screenshot.snapShotKey = snapShotKey;
             RockExit_script_RockExit.explodeKey = explodeKey;

@@ -11,15 +11,20 @@ public class RockExit : MonoBehaviour
     private Vector3 explodeCenter;
     private const float explodeForce = 10f;
     private const float rockFadeDelay = 3f;
-
+    private bool isExploded = false;
 
     public KeyCode explodeKey = KeyCode.K;
 
+    //refer to list build script
+    InteractiveObjectManager _script_interactiveObjectManager;
+
     private void Awake()
     {
+
         instance = this;
+        _script_interactiveObjectManager = GameObject.Find("Interactable Objects").GetComponent<InteractiveObjectManager>();
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,11 +63,16 @@ public class RockExit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(explodeKey))
+        //key designed for programmer only
+        if (Input.GetKeyDown(explodeKey) || _script_interactiveObjectManager.isFoundAllKey)
         {
-            Explode();
+            if (!isExploded)
+            {
+                Explode();
+                isExploded = true;
+            }
         }
     }
-    
-    
+
+
 }
