@@ -1,4 +1,15 @@
-# CMPM 121 Final Project
+# CMPM 121 Final Project - The Pit
+
+<p>
+Created by Laihong Xu, Justin Hu, and Evan Lew. We chose the mystery scene prompt and have set our game in an abandoned 
+mineshaft. The player finds themselves trapped in this mineshaft with no way out besides a pit in the middle of the cavern. 
+It is up to the player to discover a way out.
+</p>
+
+<p>
+The flickering light for the player is a torch with a particle system. There are more than 5 meaningful objects in the game, 
+but the "clues" are obviously the most important objects. 
+</p>
 
 ## List of assets
 <ol>
