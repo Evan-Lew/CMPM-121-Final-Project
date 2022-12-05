@@ -17,6 +17,7 @@
     <li>https://assetstore.unity.com/packages/2d/textures-materials/nature/terrain-textures-pack-free-139542</li>
     <li>https://assetstore.unity.com/packages/3d/props/food-and-kitchen-props-pack-85050</li>
     <li>https://assetstore.unity.com/packages/3d/props/food/food-pack-mixed-154349</li>
+    <li>https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555</li>
 </ol>
 
 ## List of SFX
@@ -24,5 +25,6 @@
     <li>https://freesound.org/people/InspectorJ/sounds/421022/</li>
     <li>https://freesound.org/people/claymorexx/sounds/472116/</li>
     <li>https://freesound.org/people/derplayer/sounds/587194/</li>
+    <li>https://freesound.org/people/BiancaBothaPure/sounds/365707/</li>
 
 </ol>
