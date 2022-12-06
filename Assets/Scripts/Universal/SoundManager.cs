@@ -15,9 +15,11 @@ public class SoundManager : MonoBehaviour
 
 
     [HideInInspector]public static AudioClip sfx_Explosion, sfx_Jump, sfx_Footstep;
+    [HideInInspector] public static AudioClip sfx_GoodClueMonster, sfx_BadClueMonster;
 
     [HideInInspector]public static AudioSource audioSrc;
     [HideInInspector]public static AudioSource audioSrc_footStep;
+    [HideInInspector] public static AudioSource audioScr_Monster;
 
     void Start()
     {
@@ -25,9 +27,15 @@ public class SoundManager : MonoBehaviour
         sfx_Explosion = Resources.Load<AudioClip>("SFX/Explosion");
         sfx_Jump = Resources.Load<AudioClip>("SFX/Jump");
         sfx_Footstep = Resources.Load<AudioClip>("SFX/Footstep");
+        sfx_GoodClueMonster = Resources.Load<AudioClip>("SFX/GoodClueMonster");
+        sfx_BadClueMonster = Resources.Load<AudioClip>("SFX/BadClueMonster");
+
+
 
         audioSrc = GetComponent<AudioSource>();
         audioSrc_footStep = GameObject.Find("SFX/SoundManager/FootStep").GetComponent<AudioSource>();
+        audioScr_Monster = GameObject.Find("SFX/SoundManager/Monster").GetComponent<AudioSource>();
+
     }
 
     //example call in other script
@@ -59,6 +67,20 @@ public class SoundManager : MonoBehaviour
                 audioSrc_footStep.clip = sfx_Footstep;
                 audioSrc_footStep.volume = volumn;
                 audioSrc_footStep.Play();
+                break;
+
+            //monster
+
+            case "sfx_GoodClueMonster":
+                audioScr_Monster.clip = sfx_GoodClueMonster;
+                audioScr_Monster.volume = volumn;
+                audioScr_Monster.PlayOneShot(audioScr_Monster.clip);
+                break;
+
+            case "sfx_BadClueMonster":
+                audioScr_Monster.clip = sfx_BadClueMonster;
+                audioScr_Monster.volume = volumn;
+                audioScr_Monster.PlayOneShot(audioScr_Monster.clip);
                 break;
         }
     }

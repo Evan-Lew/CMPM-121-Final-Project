@@ -67,11 +67,13 @@ public class PickUp : Interactable
             switch (objectType)
             {
                 case PitObjectType.Consumed:
+                    SoundManager.PlaySound("sfx_GoodClueMonster", 1);
                     CameraShaker.Instance.ShakeOnce(4f, 4f, 1.5f, 1.5f);
                     gameObject.SetActive(false);
                     _script_interactiveObjectManager.List_Build();
                     break;
                 case PitObjectType.Return:
+                    SoundManager.PlaySound("sfx_BadClueMonster", 1);
                     CameraShaker.Instance.ShakeOnce(4f, 4f, 1.5f, 1.5f);
                     float horizontalElement = .33f;
                     Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized * horizontalElement;
