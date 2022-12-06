@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         enablePitFallFeature = true;
         startPos = transform.position;
         FadeOut_Script = FadeOut.GetComponent<FadeOut>();
+        
 
     }
 

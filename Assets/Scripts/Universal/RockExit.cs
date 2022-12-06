@@ -69,6 +69,7 @@ public class RockExit : MonoBehaviour
         {
             if (!isExploded)
             {
+                ExitColliderController.instance.GetComponent<BoxCollider>().enabled = false;
                 Explode();
                 isExploded = true;
             }
