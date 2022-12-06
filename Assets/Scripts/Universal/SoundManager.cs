@@ -74,7 +74,7 @@ public class SoundManager : MonoBehaviour
                 audioSrc.volume = volumn;
                 audioSrc.PlayOneShot(audioSrc.clip);
                 break;
-            
+
             //footstep will be paused when it's not moving, so I use another audio source to avoid pause other clips at same time
             case "sfx_Footstep":
                 audioSrc_footStep.clip = sfx_Footstep;
