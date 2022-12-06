@@ -1,15 +1,67 @@
 # CMPM 121 Final Project - The Pit
+<p>
+Quick Guide of The Pit
+Five Important Clues Location:
+    1.
+    2.
+    3.
+    4.
+    5.
+</p>
+
 
 <p>
-Created by Laihong Xu, Justin Hu, and Evan Lew. We chose the mystery scene prompt and have set our game in an abandoned 
-mineshaft. The player finds themselves trapped in this mineshaft with no way out besides a pit in the middle of the cavern. 
-It is up to the player to discover a way out.
+Credit:
+    Stage Design
+    Evan Lew
+
+    Programmer and Framework
+    Justin Hu
+    Laihong Xu
+
+    Sound and Assets
+    Evan Lew
+    Justin Hu
+    Laihong Xu
+
+    Documentation and Video
+    Evan Lew
+    Justin Hu
+    Laihong Xu
+
 </p>
 
 <p>
-The flickering light for the player is a torch with a particle system. There are more than 5 meaningful objects in the game, 
-but the "clues" are obviously the most important objects. 
+Summary: 
+    We chose the mystery scene prompt and have set our game in an abandoned mineshaft. The player finds themselves trapped in this mineshaft with no way out besides a pit in the middle of the cavern. It is up to the player to discover a way out.
 </p>
+
+<p>
+Tutorial:
+    Player needs to control the character to find all necessary clues on the Mineshaft. But not all of those interactive objects will satisfy the monster living under the pit. Only those will feed him can make him happy. Once player offers enough food, monster will move his body and cause an earthquake. The earthquake will accidently break the rocks that block the exit. Once the rocks are gone, player can go outside and taste the air of freedom.
+</p>
+
+<p>
+Porject's Requirement
+    1. Particle system and light
+        Torch conbines two different particle systems, the first one is the ash above the torch
+        the second one is the flickering light. As it's required by "Mystery Scene", this is also the only light source.
+
+    2. At least 5 clues hidden in the scene that the player needs to find  
+        All interative objects are meaningful, and those five that counted as clues will lead player to the exit of the mineshaft. Monster/"Pit" will also react differently if player throws non-clues object into the pit.
+
+
+    3. Finding all of the clues triggers some kind of event
+        Earthquake will happen, the rocks on exit will trigger explosion effect.
+
+    4. Others
+        Skybox: use night theme skybox
+        Post-processing:  for URP:  Boom, chromatic aberration, film Grain, Vignette
+        Compelling environment: Dark theme for mineshaft environment + SFX that creates terrifying feeling.
+</p>
+
+
+
 
 ## List of assets
 <ol>

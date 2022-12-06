@@ -33,16 +33,17 @@ public class StatusControl : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             statusImagesList.Add(transform.GetChild(i).gameObject.GetComponent<Image>());
-            statusImagesList[i].enabled = false;
+            statusImagesList[i].enabled = true;
         }
     }
 
+    //this will be called whenthe list is changing 
     public void DisplayStatus(List<GameObject> list_CluesInPit)
     {
         int count = list_CluesInPit.Count;
-        for(int i = 0; i < count; i++)
+        for(int i = count - 1; i >= 0; i--)
         {
-            statusImagesList[i].enabled = true;
+            statusImagesList[i].enabled = false;
         }
     }
 }
