@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class RockExit : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class RockExit : MonoBehaviour
     private bool isExploded = false;
 
     public KeyCode explodeKey = KeyCode.K;
+    public GameObject Player;
+    private PlayerMovement _script_PlayerMovement;
 
     //refer to list build script
     InteractiveObjectManager _script_interactiveObjectManager;
@@ -21,8 +24,10 @@ public class RockExit : MonoBehaviour
     private void Awake()
     {
 
+
         instance = this;
         _script_interactiveObjectManager = GameObject.Find("Interactable Objects").GetComponent<InteractiveObjectManager>();
+        _script_PlayerMovement = Player.GetComponent<PlayerMovement>();
     }
 
     // Start is called before the first frame update
@@ -38,12 +43,15 @@ public class RockExit : MonoBehaviour
 
     public void Explode()
     {
+        CameraShaker.Instance.ShakeOnce(10f, 7f, 2f, 2f);
         SoundManager.PlaySound("sfx_Explosion", 0.3f);
         StartCoroutine(ExplosionCoroutine());
     }
 
     private IEnumerator ExplosionCoroutine()
     {
+        //disable playable control
+        _script_PlayerMovement.enableControl = false;
         foreach (Rigidbody rb in rocks)
         {
             Vector3 movementDir = (rb.transform.position - explodeCenter).normalized;
@@ -53,6 +61,7 @@ public class RockExit : MonoBehaviour
         }
 
         yield return new WaitForSeconds(rockFadeDelay);
+        _script_PlayerMovement.enableControl = true;
         foreach (Rigidbody rb in rocks)
         {
             Destroy(rb.gameObject);

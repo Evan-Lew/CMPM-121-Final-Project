@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using EZCameraShake;
 
 public enum PitObjectType
 {
@@ -66,10 +67,12 @@ public class PickUp : Interactable
             switch (objectType)
             {
                 case PitObjectType.Consumed:
+                    CameraShaker.Instance.ShakeOnce(4f, 4f, 1.5f, 1.5f);
                     gameObject.SetActive(false);
                     _script_interactiveObjectManager.List_Build();
                     break;
                 case PitObjectType.Return:
+                    CameraShaker.Instance.ShakeOnce(4f, 4f, 1.5f, 1.5f);
                     float horizontalElement = .33f;
                     Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized * horizontalElement;
                     _rigidbody.velocity = new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f;

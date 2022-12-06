@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using EZCameraShake;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -202,7 +202,7 @@ void playerPosValidationCheck()
         //applies to both first person and third person camera
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-
+            CameraShaker.Instance.ShakeOnce(2f, 2f, .5f, 0.5f);
             //v = sqrt (h * -2 * g)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             SoundManager.PlaySound("sfx_Jump", 2);
