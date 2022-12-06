@@ -65,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
     {
         firstPersonEnabled = true;
         thirdPersonEnabled = false;
-        enableControl = true;
+        //enableControl will be init by gameManager
+        //enableControl = true;
         enablePitFallFeature = true;
         startPos = transform.position;
         FadeOut_Script = FadeOut.GetComponent<FadeOut>();
