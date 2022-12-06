@@ -1,16 +1,21 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using EZCameraShake;
+using Random = UnityEngine.Random;
 
 public enum PitObjectType
 {
-    Consumed, Return,
+    Consumed,
+    Return,
 }
+
 public class PickUp : Interactable
 {
     private bool pickedUp;
     private Rigidbody _rigidbody;
     private Collider _collider;
+    private Outline outline;
 
     //refer to list build script
     InteractiveObjectManager _script_interactiveObjectManager;
@@ -19,13 +24,16 @@ public class PickUp : Interactable
 
     private void Awake()
     {
-        _script_interactiveObjectManager = GameObject.Find("Interactable Objects").GetComponent<InteractiveObjectManager>();
+        _script_interactiveObjectManager =
+            GameObject.Find("Interactable Objects").GetComponent<InteractiveObjectManager>();
     }
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
+        outline = transform.GetComponent<Outline>();
+        
     }
 
     public override void Interact()
@@ -57,6 +65,21 @@ public class PickUp : Interactable
             Vector3 moveDir = (ViewingControl.instance.playerLookVector - transform.position);
             _rigidbody.velocity = moveDir * 5;
         }
+
+        if (outline == null)
+        {
+            print(gameObject.name);
+        }
+        
+        if (Vector3.Distance(PlayerMovement.instance.transform.position, transform.position) < 5f)
+        {
+            outline.OutlineWidth = 2;
+        }
+        else
+        {
+            outline.OutlineWidth = 0;
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,7 +99,8 @@ public class PickUp : Interactable
                     SoundManager.PlaySound("sfx_BadClueMonster", 0.6f);
                     CameraShaker.Instance.ShakeOnce(4f, 4f, 1.5f, 1.5f);
                     float horizontalElement = .33f;
-                    Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized * horizontalElement;
+                    Vector2 randomElement = new Vector2(Random.Range(0, 5), Random.Range(0, 5)).normalized *
+                                            horizontalElement;
                     _rigidbody.velocity = new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f;
                     print(new Vector3(randomElement.x, 1, randomElement.y).normalized * 20f);
                     _script_interactiveObjectManager.List_Build();
