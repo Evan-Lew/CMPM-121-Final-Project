@@ -46,6 +46,7 @@ public class Interactor : MonoBehaviour
         }
         if (Input.GetKeyDown(interactionKey))
         {
+            SoundManager.PlaySound("sfx_Pickup", 1);
             if (currentPickedObject != null)
             {
                 currentPickedObject.GetComponent<PickUp>().Drop();

@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour
      */
 
 
-    [HideInInspector]public static AudioClip sfx_Explosion, sfx_Jump, sfx_Footstep;
+    [HideInInspector]public static AudioClip sfx_Explosion, sfx_Jump, sfx_Footstep, sfx_WilhemScream, sfx_Pickup;
     [HideInInspector] public static AudioClip sfx_GoodClueMonster, sfx_BadClueMonster;
 
     [HideInInspector]public static AudioSource audioSrc;
@@ -29,6 +29,8 @@ public class SoundManager : MonoBehaviour
         sfx_Footstep = Resources.Load<AudioClip>("SFX/Footstep");
         sfx_GoodClueMonster = Resources.Load<AudioClip>("SFX/GoodClueMonster");
         sfx_BadClueMonster = Resources.Load<AudioClip>("SFX/BadClueMonster");
+        sfx_WilhemScream = Resources.Load<AudioClip>("SFX/WilhemScream");
+        sfx_Pickup = Resources.Load<AudioClip>("SFX/Pickup");
 
 
 
@@ -60,8 +62,19 @@ public class SoundManager : MonoBehaviour
                 audioSrc.volume = volumn;
                 audioSrc.PlayOneShot(audioSrc.clip);
                 break;
-
-
+            
+            case "sfx_WilhemScream":
+                audioSrc.clip = sfx_WilhemScream;
+                audioSrc.volume = volumn;
+                audioSrc.PlayOneShot(audioSrc.clip);
+                break;
+            
+            case "sfx_Pickup":
+                audioSrc.clip = sfx_Pickup;
+                audioSrc.volume = volumn;
+                audioSrc.PlayOneShot(audioSrc.clip);
+                break;
+            
             //footstep will be paused when it's not moving, so I use another audio source to avoid pause other clips at same time
             case "sfx_Footstep":
                 audioSrc_footStep.clip = sfx_Footstep;

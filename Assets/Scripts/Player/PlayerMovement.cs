@@ -162,6 +162,7 @@ void playerPosValidationCheck()
         isPitted = Physics.CheckSphere(groundCheck.position, collidingDistance, pitBottomMask);
         if (isPitted && enablePitFallFeature)
         {
+            SoundManager.PlaySound("sfx_WilhemScream", 1);
             enablePitFallFeature = false;
             FadeOut.SetActive(true);
             FadeOut_Script.FadingEvent();
