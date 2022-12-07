@@ -60,7 +60,8 @@ Porject's Requirement
         Compelling environment: Dark theme for mineshaft environment + SFX that creates terrifying feeling.
 </p>
 
-
+## Itch Page
+<p>https://evanlew.itch.io/the-pit</p>
 
 
 ## List of assets
@@ -89,5 +90,4 @@ Porject's Requirement
     <li>https://freesound.org/people/claymorexx/sounds/472116/</li>
     <li>https://freesound.org/people/derplayer/sounds/587194/</li>
     <li>https://freesound.org/people/BiancaBothaPure/sounds/365707/</li>
-
 </ol>
