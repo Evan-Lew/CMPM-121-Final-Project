@@ -2,11 +2,11 @@
 <p>
 Quick Guide of The Pit
 Five Important Clues Location:
-    1.
-    2.
-    3.
-    4.
-    5.
+    1. Mushroom - Table near spawn
+    2. Apple - Table near spawn
+    3. Carrot - Table near spawn
+    4. Beer Bottle - Tunnel to the left of spawn
+    5. Banana - Across the pit from spawn
 </p>
 
 
